@@ -163,25 +163,32 @@ UpgradeLog*.XML
 UpgradeLog*.htm
 
 # SQL Server files
+*.mdf
 App_Data/*.ldf
-*.ldf
+
 # =========================
+# Business Intelligence projects
 # =========================
-*.rdl.data
+
 # Windows image file caches
 Thumbs.db
-*.bim_*.settings
+*.bim.layout
+
 # Folder config file
-FakesAssemblies/
+# Microsoft Fakes
+
 # Recycle Bin used on file shares
-.ntvs_analysis.dat
+# Node.js Tools for Visual Studio
+
 # Mac crap
 .DS_Store
-# Visual Studio 6 build log
+
 # Loan Application Process
 MailMerge/*.htm
+*.plg
 *_Print.pdf
-# Visual Studio 6 workspace options file
+
+*.opt
 # SASS detritus
 # =========================
 *.sass-cache*
