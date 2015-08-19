@@ -11,6 +11,7 @@
 *.userprefs
 
 # Build results
+
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -55,7 +56,7 @@ dlldata.c
 *.tlh
 *.tmp
 *.tmp_proj
-*.log
+log.txt*
 *.vspscc
 *.vssscc
 .builds
@@ -88,7 +89,6 @@ $tf/
 # ReSharper is a .NET coding add-in
 _ReSharper*/
 *.[Rr]e[Ss]harper
-*.DotSettings.user
 
 # JustCode is a .NET coding addin-in
 .JustCode
@@ -100,9 +100,8 @@ _TeamCity*
 *.dotCover
 
 # NCrunch
-_NCrunch_*
 .*crunch*.local.xml
-
+_NCrunch_*/
 # MightyMoose
 *.mm.*
 AutoTest.Net/
@@ -127,37 +126,28 @@ DocProject/Help/html
 publish/
 
 # Publish Web Output
-*.[Pp]ublish.xml
 *.azurePubxml
 # TODO: Comment the next line if you want to checkin your web deploy settings 
 # but database connection strings (with potential passwords) will be unencrypted
-*.pubxml
 *.publishproj
 
-# NuGet Packages
 *.nupkg
-# The packages folder can be ignored because of Package Restore
-**/packages/*
-# except build/, which is used as an MSBuild target.
 !**/packages/build/
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/packages/repositories.config
 
 # Windows Azure Build Output
-csx/
 *.build.csdef
 
 # Windows Store app package directory
 AppPackages/
 
 # Others
-*.[Cc]ache
 ClientBin/
 [Ss]tyle[Cc]op.*
 ~$*
 *~
 *.dbmdl
-*.dbproj.schemaview
 *.pfx
 *.publishsettings
 node_modules/
@@ -166,8 +156,6 @@ bower_components/
 # RIA/Silverlight projects
 Generated_Code/
 
-# Backup & report files from converting an old project file
-# to a newer Visual Studio version. Backup files are not needed,
 # because we have git ;-)
 _UpgradeReport_Files/
 Backup*/
@@ -175,22 +163,25 @@ UpgradeLog*.XML
 UpgradeLog*.htm
 
 # SQL Server files
-*.mdf
+App_Data/*.ldf
 *.ldf
-
-# Business Intelligence projects
+# =========================
+# =========================
 *.rdl.data
-*.bim.layout
+# Windows image file caches
+Thumbs.db
 *.bim_*.settings
-
-# Microsoft Fakes
+# Folder config file
 FakesAssemblies/
-
-# Node.js Tools for Visual Studio
+# Recycle Bin used on file shares
 .ntvs_analysis.dat
-
+# Mac crap
+.DS_Store
 # Visual Studio 6 build log
-*.plg
-
+# Loan Application Process
+MailMerge/*.htm
+*_Print.pdf
 # Visual Studio 6 workspace options file
-*.opt
+# SASS detritus
+# =========================
+*.sass-cache*
