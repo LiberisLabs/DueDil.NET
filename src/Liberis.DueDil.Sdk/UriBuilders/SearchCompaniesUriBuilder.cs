@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Liberis.DueDil.Sdk.UriBuilders
 {
-    public class SearchCompaniesUriBuilder
+    public class SearchCompaniesUriBuilder : ISearchCompaniesUriBuilder
     {
         private readonly Uri _baseUri;
         private readonly string _apiKey;
