@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Liberis.DueDil.Sdk.Requests.SearchCompanies;
 using Liberis.DueDil.Sdk.Responses;
-using Liberis.DueDil.Sdk.Responses.SearchCompanies;
+using Liberis.DueDil.Sdk.Responses.Companies;
 using Liberis.DueDil.Sdk.UriBuilders;
 
 namespace Liberis.DueDil.Sdk

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Liberis.DueDil.Sdk.Requests.SearchCompanies;
 using Liberis.DueDil.Sdk.Responses;
-using Liberis.DueDil.Sdk.Responses.SearchCompanies;
+using Liberis.DueDil.Sdk.Responses.Companies;
 
 namespace Liberis.DueDil.Sdk
 {
