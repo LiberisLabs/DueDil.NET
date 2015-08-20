@@ -19,37 +19,34 @@ namespace Liberis.DueDil.Sdk.Tests.UriBuilders
         [SetUp]
         public void GivenACompanyName_WhenBuildingAUri()
         {
-            _baseUri = new Uri("wibble://liberisDevs.co.uk/bla");
+            _baseUri = new Uri("http://liberis.co.uk/bla1/bla2/");
             _apiKey = Guid.NewGuid().ToString();
             _name = "Liberis";
             var terms = new Terms() {Name = _name};
-            var builder = new SearchCompaniesUriBuilder(_baseUri, _apiKey);
+            var builder = new SearchCompaniesUriBuilder(_apiKey);
 
             _actualUri = builder.BuildUri(terms);
         }
 
-        [Test]
-        public void ThenTheUriSchemaIsFromBaseUri()
-        {
-            Assert.That(_actualUri.Scheme, Is.EqualTo(_baseUri.Scheme));
-        }
 
         [Test]
-        public void ThenTheUriHostIsFromBaseUri()
+        public void ThenTheUriIsNotAbsolute()
         {
-            Assert.That(_actualUri.Host, Is.EqualTo(_baseUri.Host));
+            Assert.That(_actualUri.IsAbsoluteUri, Is.False);
         }
 
         [Test]
         public void ThenTheUriPathIsCorrect()
         {
-            Assert.That(_actualUri.AbsolutePath, Is.EqualTo("/v3/companies"));
+            var uri = new Uri(_baseUri, _actualUri);
+            Assert.That(uri.AbsolutePath, Is.EqualTo("/bla1/bla2/companies"));
         }
 
         [Test]
         public void ThenTheUriQueryStringContainsApiKey()
         {
-            var query = HttpUtility.ParseQueryString(_actualUri.Query);
+            var uri = new Uri(_baseUri, _actualUri);
+            var query = HttpUtility.ParseQueryString(uri.Query);
 
             Assert.That(query["api_key"], Is.EqualTo(_apiKey));
         }
@@ -57,7 +54,8 @@ namespace Liberis.DueDil.Sdk.Tests.UriBuilders
         [Test]
         public void ThenTheUriQueryStringContainsTheCorrectFilter()
         {
-            var query = HttpUtility.ParseQueryString(_actualUri.Query);
+            var uri = new Uri(_baseUri, _actualUri);
+            var query = HttpUtility.ParseQueryString(uri.Query);
             var filters = JsonConvert.DeserializeObject<JObject>(query["filters"]);
             var namefilter = filters["name"].Value<string>();
 
