@@ -3,7 +3,7 @@ using System.Linq;
 using Liberis.DueDil.Sdk.FunctionalTests.MockApi;
 using Liberis.DueDil.Sdk.Requests.SearchCompanies;
 using Liberis.DueDil.Sdk.Responses;
-using Liberis.DueDil.Sdk.Responses.SearchCompanies;
+using Liberis.DueDil.Sdk.Responses.Companies;
 using NUnit.Framework;
 
 namespace Liberis.DueDil.Sdk.FunctionalTests
