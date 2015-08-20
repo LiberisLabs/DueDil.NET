@@ -9,7 +9,5 @@ namespace Liberis.DueDil.Sdk.Responses
     public class DueDilClientResponse<T>
     {
         public T Data { get; set; }
-
-        public bool IsOk { get; set; }
     }
 }

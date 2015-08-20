@@ -30,13 +30,7 @@ namespace Liberis.DueDil.Sdk.FunctionalTests
 
             _actual = client.SearchCompanies(new Terms(){Name = name}).Result;
         }
-
-        [Test]
-        public void ThenTheResponseIsOk()
-        {
-            Assert.That(_actual.IsOk, Is.True);
-        }
-
+        
         [Test]
         public void ThenARequestIdIsReturned()
         {
