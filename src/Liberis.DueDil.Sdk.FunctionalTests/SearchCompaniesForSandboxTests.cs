@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace Liberis.DueDil.Sdk.FunctionalTests
 {
     [TestFixture]
-    public class SearchCompaniesTests
+    public class SearchCompaniesForSandboxTests
     {
         private Api _api;
         private DueDilClientResponse<DueDilResponse<PaginatedResponse<SearchCompanyResult>>> _actual;
@@ -19,14 +19,14 @@ namespace Liberis.DueDil.Sdk.FunctionalTests
         {
             var name = "GG";
             var apiKey = Guid.NewGuid().ToString();
-            var resource = new MockResource(new ResourceIdentifier("GET", "/v3/companies", string.Format("?api_key={0}&filters={{\"name\":\"{1}\"}}", apiKey, name)));
+            var resource = new MockResource(new ResourceIdentifier("GET", "/v3/sandbox/companies", string.Format("?api_key={0}&filters={{\"name\":\"{1}\"}}", apiKey, name)));
             resource.ReturnsBody(JsonSearchResponse);
 
             _api = new Api();
             _api.RegisterResource(resource);
             _api.Start();
 
-            var client = new DueDilClientFactory(new DueDilSettings(_api.Uri, apiKey, false)).CreateClient();
+            var client = new DueDilClientFactory(new DueDilSettings(_api.Uri, apiKey, true)).CreateClient();
 
             _actual = client.SearchCompanies(new Terms(){Name = name}).Result;
         }

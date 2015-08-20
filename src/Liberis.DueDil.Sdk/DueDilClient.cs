@@ -9,32 +9,27 @@ using Liberis.DueDil.Sdk.UriBuilders;
 
 namespace Liberis.DueDil.Sdk
 {
-    public class DueDilClient
+    public class DueDilClient : IDueDilClient
     {
-        private readonly DueDilClientSettings _settings;
-        private readonly SearchCompaniesUriBuilder _searchCompaniesUriBuilder;
+        private readonly Uri _baseUri;
+        private readonly ISearchCompaniesUriBuilder _searchCompaniesUriBuilder;
 
-        public DueDilClient(DueDilClientSettings settings, SearchCompaniesUriBuilder searchCompaniesUriBuilder)
+        public DueDilClient(Uri baseUri, ISearchCompaniesUriBuilder searchCompaniesUriBuilder)
         {
-            _settings = settings;
+            _baseUri = baseUri;
             _searchCompaniesUriBuilder = searchCompaniesUriBuilder;
-        }
-
-        public DueDilClient(DueDilClientSettings settings)
-            : this(settings, new SearchCompaniesUriBuilder(settings.BaseUri, settings.ApiKey))
-        {
-            
         }
 
         public async Task<DueDilClientResponse<DueDilResponse<PaginatedResponse<SearchCompanyResult>>>> SearchCompanies(Terms terms)
         {
-            var httpClient = CreateHttpClient(_settings);
+            var httpClient = CreateHttpClient();
 
             var response = await httpClient.GetAsync(_searchCompaniesUriBuilder.BuildUri(terms))
                                                 .ConfigureAwait(false);
 
             var dueDilResponse = new DueDilClientResponse<DueDilResponse<PaginatedResponse<SearchCompanyResult>>>();
 
+            response.EnsureSuccessStatusCode();
             if (response.IsSuccessStatusCode)
             {
                 dueDilResponse.IsOk = true;
@@ -45,7 +40,7 @@ namespace Liberis.DueDil.Sdk
             return dueDilResponse;
         }
         
-        private HttpClient CreateHttpClient(DueDilClientSettings settings)
+        private HttpClient CreateHttpClient()
         {
             var handlers = new HttpClientHandler
             {
@@ -54,31 +49,9 @@ namespace Liberis.DueDil.Sdk
 
             var httpClient = HttpClientFactory.Create(handlers);
 
-            httpClient.BaseAddress = settings.BaseUri;
-
+            httpClient.BaseAddress = _baseUri;
+            
             return httpClient;
-        }
-    }
-
-    public class DueDilClientSettings
-    {
-        private readonly string _apiKey;
-        private readonly Uri _baseUri;
-
-        public DueDilClientSettings(Uri baseUri, string apiKey)
-        {
-            _baseUri = baseUri;
-            _apiKey = apiKey;
-        }
-
-        public Uri BaseUri
-        {
-            get { return _baseUri; }
-        }
-
-        public string ApiKey
-        {
-            get { return _apiKey; }
         }
     }
 }

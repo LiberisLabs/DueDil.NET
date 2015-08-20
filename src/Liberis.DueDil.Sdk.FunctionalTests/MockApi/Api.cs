@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Text;
 
 namespace Liberis.DueDil.Sdk.FunctionalTests.MockApi
 {
@@ -42,7 +44,17 @@ namespace Liberis.DueDil.Sdk.FunctionalTests.MockApi
                 var identifier = new ResourceIdentifier(httpListenerContext.Request.HttpMethod,
                     httpListenerContext.Request.Url.AbsolutePath, Uri.UnescapeDataString(httpListenerContext.Request.Url.Query));
 
-                _resources[identifier].Handle(httpListenerContext);
+                if (_resources.ContainsKey(identifier))
+                {
+                    _resources[identifier].Handle(httpListenerContext);
+                }
+                else
+                {
+                    Debug.WriteLine("Could not handle request: {0} {1}", httpListenerContext.Request.HttpMethod, httpListenerContext.Request.Url);
+                    httpListenerContext.Response.StatusCode = 500;
+
+                    httpListenerContext.Response.Close(Encoding.UTF8.GetBytes("unknown mocked resource"), false);
+                }
             }
             catch { }
             finally
