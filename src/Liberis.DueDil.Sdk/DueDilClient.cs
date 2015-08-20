@@ -30,12 +30,9 @@ namespace Liberis.DueDil.Sdk
             var dueDilResponse = new DueDilClientResponse<DueDilResponse<PaginatedResponse<SearchCompanyResult>>>();
 
             response.EnsureSuccessStatusCode();
-            if (response.IsSuccessStatusCode)
-            {
-                dueDilResponse.IsOk = true;
-                dueDilResponse.Data = await response.Content.ReadAsAsync<DueDilResponse<PaginatedResponse<SearchCompanyResult>>>()
+
+            dueDilResponse.Data = await response.Content.ReadAsAsync<DueDilResponse<PaginatedResponse<SearchCompanyResult>>>()
                                                                 .ConfigureAwait(false);
-            }
 
             return dueDilResponse;
         }

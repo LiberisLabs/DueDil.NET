@@ -32,12 +32,6 @@ namespace Liberis.DueDil.Sdk.FunctionalTests
         }
 
         [Test]
-        public void ThenTheResponseIsOk()
-        {
-            Assert.That(_actual.IsOk, Is.True);
-        }
-
-        [Test]
         public void ThenARequestIdIsReturned()
         {
             Assert.That(_actual.Data.RequestId, Is.Not.Null);
