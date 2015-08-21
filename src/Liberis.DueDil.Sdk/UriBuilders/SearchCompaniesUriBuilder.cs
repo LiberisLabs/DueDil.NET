@@ -18,9 +18,9 @@ namespace Liberis.DueDil.Sdk.UriBuilders
             var path = "companies";
 
             var filters = JsonConvert.SerializeObject(terms);
-            var query = string.Format("api_key={0}&filters={1}", Uri.EscapeDataString(_apiKey), Uri.EscapeDataString(filters));
+            var query = $"?api_key={Uri.EscapeDataString(_apiKey)}&filters={Uri.EscapeDataString(filters)}";
 
-            var pathAndQuery = path + "?" + query;
+            var pathAndQuery = path + query;
 
             return new Uri(pathAndQuery, UriKind.Relative);
         }

@@ -61,6 +61,8 @@
     <Compile Include="Responses\Pagination.cs" />
     <Compile Include="Responses\DueDilResponse`1.cs" />
     <Compile Include="Responses\Companies\SearchCompanyResult.cs" />
+    <Compile Include="UriBuilders\GetCompanyUriBuilder.cs" />
+    <Compile Include="UriBuilders\IGetCompanyUriBuilder.cs" />
     <Compile Include="UriBuilders\ISearchCompaniesUriBuilder.cs" />
     <Compile Include="UriBuilders\SearchCompaniesUriBuilder.cs" />
   </ItemGroup>

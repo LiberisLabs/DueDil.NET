@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GetCompanyTests.cs" />
     <Compile Include="MockApi\Api.cs" />
     <Compile Include="MockApi\MockResource.cs" />
     <Compile Include="MockApi\ResourceIdentifier.cs" />

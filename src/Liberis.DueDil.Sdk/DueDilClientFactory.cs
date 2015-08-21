@@ -15,7 +15,12 @@ namespace Liberis.DueDil.Sdk
 
         public IDueDilClient CreateClient()
         {
-            return new DueDilClient(BuildBaseUri(), CreateSearchCompaniesUriBuilder());
+            return new DueDilClient(BuildBaseUri(), CreateSearchCompaniesUriBuilder(), CreateGetCompanyUriBuilder());
+        }
+
+        private IGetCompanyUriBuilder CreateGetCompanyUriBuilder()
+        {
+            return new GetCompanyUriBuilder(_settings.ApiKey);
         }
 
         private Uri BuildBaseUri()
