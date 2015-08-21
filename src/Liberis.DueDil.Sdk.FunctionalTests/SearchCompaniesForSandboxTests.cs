@@ -13,17 +13,18 @@ namespace Liberis.DueDil.Sdk.FunctionalTests
     {
         private Api _api;
         private DueDilClientResponse<DueDilResponse<PaginatedResponse<SearchCompanyResult>>> _actual;
+        private MockResource _resource;
 
         [TestFixtureSetUp]
         public void GivenARunningApiWhenSearchingForACompany()
         {
             var name = "GG";
             var apiKey = Guid.NewGuid().ToString();
-            var resource = new MockResource(new ResourceIdentifier("GET", "/v3/sandbox/companies", string.Format("?api_key={0}&filters={{\"name\":\"{1}\"}}", apiKey, name)));
-            resource.ReturnsBody(JsonSearchResponse);
+            _resource = new MockResource(new ResourceIdentifier("GET", "/v3/sandbox/companies", $"?api_key={apiKey}&filters={{\"name\":\"{name}\"}}"));
+            _resource.ReturnsBody(JsonSearchResponse);
 
             _api = new Api();
-            _api.RegisterResource(resource);
+            _api.RegisterResource(_resource);
             _api.Start();
 
             var client = new DueDilClientFactory(new DueDilSettings(_api.Uri, apiKey, true)).CreateClient();
@@ -35,6 +36,12 @@ namespace Liberis.DueDil.Sdk.FunctionalTests
         public void ThenARequestIdIsReturned()
         {
             Assert.That(_actual.Data.RequestId, Is.Not.Null);
+        }
+
+        [Test]
+        public void ThenATheResourceIscalled()
+        {
+            Assert.That(_resource.Verify(), Is.True);
         }
 
         [Test]

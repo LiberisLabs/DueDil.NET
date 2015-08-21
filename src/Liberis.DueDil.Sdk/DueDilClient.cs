@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -13,11 +14,13 @@ namespace Liberis.DueDil.Sdk
     {
         private readonly Uri _baseUri;
         private readonly ISearchCompaniesUriBuilder _searchCompaniesUriBuilder;
+        private readonly IGetCompanyUriBuilder _getCompanyUriBuilder;
 
-        public DueDilClient(Uri baseUri, ISearchCompaniesUriBuilder searchCompaniesUriBuilder)
+        public DueDilClient(Uri baseUri, ISearchCompaniesUriBuilder searchCompaniesUriBuilder, IGetCompanyUriBuilder getCompanyUriBuilder)
         {
             _baseUri = baseUri;
             _searchCompaniesUriBuilder = searchCompaniesUriBuilder;
+            _getCompanyUriBuilder = getCompanyUriBuilder;
         }
 
         public async Task<DueDilClientResponse<DueDilResponse<PaginatedResponse<SearchCompanyResult>>>> SearchCompanies(Terms terms)
@@ -36,7 +39,24 @@ namespace Liberis.DueDil.Sdk
 
             return dueDilResponse;
         }
-        
+
+        public async Task<DueDilClientResponse<DueDilResponse<CompanyResult>>> GetCompany(string companyId)
+        {
+            var httpClient = CreateHttpClient();
+
+            var response = await httpClient.GetAsync(_getCompanyUriBuilder.BuildUri(companyId))
+                                                           .ConfigureAwait(false);
+
+            var dueDilResponse = new DueDilClientResponse<DueDilResponse<CompanyResult>>();
+
+            response.EnsureSuccessStatusCode();
+
+            dueDilResponse.Data = await response.Content.ReadAsAsync<DueDilResponse<CompanyResult>>()
+                                                                .ConfigureAwait(false);
+
+            return dueDilResponse;
+        }
+
         private HttpClient CreateHttpClient()
         {
             var handlers = new HttpClientHandler

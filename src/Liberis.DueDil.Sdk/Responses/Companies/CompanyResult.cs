@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Liberis.DueDil.Sdk.Responses.Companies
 {
-    internal class CompanyResult
+    public class CompanyResult
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
