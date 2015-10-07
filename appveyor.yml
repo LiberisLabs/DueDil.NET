@@ -37,7 +37,7 @@
      
   deploy:
     - provider: Environment
-      name: NuGet
+      name: Liberis NuGet
 
     - provider: Environment
       name: Liberis MyGet
