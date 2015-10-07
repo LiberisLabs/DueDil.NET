@@ -22,9 +22,7 @@ namespace LiberisLabs.DueDil.Tests.UriBuilders.SearchCompaniesUriBuilderTests
         {
             var filters = GetQueryFilters();
 
-            var namefilter = filters["domain"].Value<string>();
-
-            Assert.That(namefilter, Is.EqualTo(_domain));
+            Assert.That(filters.Value<string>(TermFilterNames.Domain), Is.EqualTo(_domain));
         }
     }
 }

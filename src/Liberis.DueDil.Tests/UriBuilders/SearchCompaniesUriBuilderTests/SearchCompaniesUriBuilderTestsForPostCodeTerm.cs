@@ -20,9 +20,7 @@ namespace LiberisLabs.DueDil.Tests.UriBuilders.SearchCompaniesUriBuilderTests
         {
             var filters = GetQueryFilters();
 
-            var namefilter = filters["postcode"].Value<string>();
-
-            Assert.That(namefilter, Is.EqualTo(_postCode));
+            Assert.That(filters.Value<string>(TermFilterNames.Postcode), Is.EqualTo(_postCode));
         }
     }
 }

@@ -21,9 +21,8 @@ namespace LiberisLabs.DueDil.Tests.UriBuilders.SearchCompaniesUriBuilderTests
         public void ThenTheUriQueryStringContainsTheCorrectNameFilter()
         {
             var filters = GetQueryFilters();
-            var namefilter = filters["name"].Value<string>();
 
-            Assert.That(namefilter, Is.EqualTo(_name));
+            Assert.That(filters.Value<string>(TermFilterNames.Name), Is.EqualTo(_name));
         }
 
     }

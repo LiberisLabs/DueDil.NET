@@ -21,9 +21,7 @@ namespace LiberisLabs.DueDil.Tests.UriBuilders.SearchCompaniesUriBuilderTests
         {
             var filters = GetQueryFilters();
 
-            var namefilter = filters["location"].Value<string>();
-
-            Assert.That(namefilter, Is.EqualTo(_location));
+            Assert.That(filters.Value<string>(TermFilterNames.Location), Is.EqualTo(_location));
         }
     }
 }
