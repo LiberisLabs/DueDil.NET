@@ -4,6 +4,7 @@ using LiberisLabs.DueDil.FunctionalTests.MockApi;
 using LiberisLabs.DueDil.Requests.SearchCompanies;
 using LiberisLabs.DueDil.Responses;
 using LiberisLabs.DueDil.Responses.Companies;
+using LiberisLabs.DueDil.Responses.SearchCompanies;
 using NUnit.Framework;
 
 namespace LiberisLabs.DueDil.FunctionalTests
@@ -12,7 +13,7 @@ namespace LiberisLabs.DueDil.FunctionalTests
     public class SearchCompaniesTests
     {
         private Api _api;
-        private DueDilClientResponse<DueDilResponse<PaginatedResponse<SearchCompanyResult>>> _actual;
+        private DueDilClientResponse<SearchCompany> _actual;
         private MockResource _resource;
 
         [TestFixtureSetUp]

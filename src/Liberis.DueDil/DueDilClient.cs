@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using LiberisLabs.DueDil.Requests.SearchCompanies;
 using LiberisLabs.DueDil.Responses;
 using LiberisLabs.DueDil.Responses.Companies;
+using LiberisLabs.DueDil.Responses.SearchCompanies;
 using LiberisLabs.DueDil.UriBuilders;
 
 namespace LiberisLabs.DueDil
@@ -23,35 +24,35 @@ namespace LiberisLabs.DueDil
             _getCompanyUriBuilder = getCompanyUriBuilder;
         }
 
-        public async Task<DueDilClientResponse<DueDilResponse<PaginatedResponse<SearchCompanyResult>>>> SearchCompanies(Terms terms)
+        public async Task<DueDilClientResponse<SearchCompany>> SearchCompanies(Terms terms)
         {
             var httpClient = CreateHttpClient();
 
             var response = await httpClient.GetAsync(_searchCompaniesUriBuilder.BuildUri(terms))
                                                 .ConfigureAwait(false);
 
-            var dueDilResponse = new DueDilClientResponse<DueDilResponse<PaginatedResponse<SearchCompanyResult>>>();
+            var dueDilResponse = new DueDilClientResponse<SearchCompany>();
 
             response.EnsureSuccessStatusCode();
 
-            dueDilResponse.Data = await response.Content.ReadAsAsync<DueDilResponse<PaginatedResponse<SearchCompanyResult>>>()
+            dueDilResponse.Data = await response.Content.ReadAsAsync<SearchCompany>()
                                                                 .ConfigureAwait(false);
 
             return dueDilResponse;
         }
 
-        public async Task<DueDilClientResponse<DueDilResponse<CompanyResult>>> GetCompany(string companyId)
+        public async Task<DueDilClientResponse<Company>> GetCompany(string companyId)
         {
             var httpClient = CreateHttpClient();
 
             var response = await httpClient.GetAsync(_getCompanyUriBuilder.BuildUri(companyId))
                                                            .ConfigureAwait(false);
 
-            var dueDilResponse = new DueDilClientResponse<DueDilResponse<CompanyResult>>();
+            var dueDilResponse = new DueDilClientResponse<Company>();
 
             response.EnsureSuccessStatusCode();
 
-            dueDilResponse.Data = await response.Content.ReadAsAsync<DueDilResponse<CompanyResult>>()
+            dueDilResponse.Data = await response.Content.ReadAsAsync<Company>()
                                                                 .ConfigureAwait(false);
 
             return dueDilResponse;

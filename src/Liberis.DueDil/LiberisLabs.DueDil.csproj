@@ -55,12 +55,14 @@
     <Compile Include="IDueDilClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\SearchCompanies\Terms.cs" />
+    <Compile Include="Responses\Companies\Company.cs" />
     <Compile Include="Responses\Companies\CompanyResult.cs" />
+    <Compile Include="Responses\SearchCompanies\SearchCompany.cs" />
     <Compile Include="Responses\DueDilClientResponse.cs" />
     <Compile Include="Responses\PaginatedResponse`1.cs" />
     <Compile Include="Responses\Pagination.cs" />
-    <Compile Include="Responses\DueDilResponse`1.cs" />
-    <Compile Include="Responses\Companies\SearchCompanyResult.cs" />
+    <Compile Include="Responses\DueDil`1.cs" />
+    <Compile Include="Responses\SearchCompanies\SearchCompanyResult.cs" />
     <Compile Include="UriBuilders\GetCompanyUriBuilder.cs" />
     <Compile Include="UriBuilders\IGetCompanyUriBuilder.cs" />
     <Compile Include="UriBuilders\ISearchCompaniesUriBuilder.cs" />

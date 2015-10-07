@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace LiberisLabs.DueDil.Responses.Companies
+namespace LiberisLabs.DueDil.Responses.SearchCompanies
 {
     public class SearchCompanyResult
     {

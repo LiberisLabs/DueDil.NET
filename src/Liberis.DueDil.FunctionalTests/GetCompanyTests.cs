@@ -10,7 +10,7 @@ namespace LiberisLabs.DueDil.FunctionalTests
     public class GetCompanyTests
     {
         private Api _api;
-        private DueDilClientResponse<DueDilResponse<CompanyResult>> _actual;
+        private DueDilClientResponse<Company> _actual;
         private MockResource _resource;
 
         [TestFixtureSetUp]
