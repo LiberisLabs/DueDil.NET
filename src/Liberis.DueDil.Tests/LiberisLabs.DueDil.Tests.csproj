@@ -58,6 +58,7 @@
     <Compile Include="UriBuilders\SearchCompaniesUriBuilderTests\SearchCompaniesUriBuilderTestsForLocationTerm.cs" />
     <Compile Include="UriBuilders\SearchCompaniesUriBuilderTests\SearchCompaniesUriBuilderTestsForNameTerm.cs" />
     <Compile Include="UriBuilders\SearchCompaniesUriBuilderTests\SearchCompaniesUriBuilderTestsBase.cs" />
+    <Compile Include="UriBuilders\SearchCompaniesUriBuilderTests\SearchCompaniesUriBuilderTestsForNoTerms.cs" />
     <Compile Include="UriBuilders\SearchCompaniesUriBuilderTests\SearchCompaniesUriBuilderTestsForPostCodeTerm.cs" />
   </ItemGroup>
   <ItemGroup>

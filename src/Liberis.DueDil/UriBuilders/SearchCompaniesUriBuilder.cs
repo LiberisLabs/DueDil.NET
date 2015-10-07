@@ -17,7 +17,7 @@ namespace LiberisLabs.DueDil.UriBuilders
         {
             var path = "companies";
 
-            var filters = JsonConvert.SerializeObject(terms);
+            var filters = JsonConvert.SerializeObject(terms, new JsonSerializerSettings() {NullValueHandling = NullValueHandling.Ignore});
             var query = $"?api_key={Uri.EscapeDataString(_apiKey)}&filters={Uri.EscapeDataString(filters)}";
 
             var pathAndQuery = path + query;
