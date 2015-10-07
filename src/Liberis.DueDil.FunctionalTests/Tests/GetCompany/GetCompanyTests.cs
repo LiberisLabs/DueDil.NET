@@ -1,5 +1,6 @@
 ﻿using System;
 using LiberisLabs.DueDil.FunctionalTests.MockApi;
+using LiberisLabs.DueDil.Requests.Companies;
 using LiberisLabs.DueDil.Responses;
 using LiberisLabs.DueDil.Responses.Companies;
 using NUnit.Framework;
@@ -34,14 +35,14 @@ namespace LiberisLabs.DueDil.FunctionalTests.Tests.GetCompany
 
             var client = new DueDilClientFactory(new DueDilSettings(_api.Uri, apiKey, _sandboxMode)).CreateClient();
 
-            _actual = client.GetCompany(companyId).Result;
+            _actual = client.GetCompany(Locale.Uk, companyId).Result;
         }
 
         private string CreateCompanyPath(string companyId)
         {
             var v3Path = "/v3";
             var sandboxPath = _sandboxMode ? "/sandbox" : null;
-            var companiesPath = "/companies";
+            var companiesPath = "/uk/companies";
 
             return $"{v3Path}{sandboxPath}{companiesPath}/{companyId}";
         }

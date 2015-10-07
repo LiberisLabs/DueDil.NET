@@ -5,10 +5,10 @@ namespace LiberisLabs.DueDil
 {
     public class DueDilClientFactory
     {
-        private readonly DueDilSettings _settings;
+        private readonly IDueDilSettings _settings;
         private const string ApiVersion = "v3";
 
-        public DueDilClientFactory(DueDilSettings settings)
+        public DueDilClientFactory(IDueDilSettings settings)
         {
             _settings = settings;
         }
