@@ -54,7 +54,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UriBuilders\GetCompanyUriBuilderTests.cs" />
-    <Compile Include="UriBuilders\SearchCompaniesUriBuilderTests.cs" />
+    <Compile Include="UriBuilders\SearchCompaniesUriBuilderTests\SearchCompaniesUriBuilderTestsForDomainTerm.cs" />
+    <Compile Include="UriBuilders\SearchCompaniesUriBuilderTests\SearchCompaniesUriBuilderTestsForLocationTerm.cs" />
+    <Compile Include="UriBuilders\SearchCompaniesUriBuilderTests\SearchCompaniesUriBuilderTestsForNameTerm.cs" />
+    <Compile Include="UriBuilders\SearchCompaniesUriBuilderTests\SearchCompaniesUriBuilderTestsBase.cs" />
+    <Compile Include="UriBuilders\SearchCompaniesUriBuilderTests\SearchCompaniesUriBuilderTestsForPostCodeTerm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -7,7 +7,6 @@ namespace LiberisLabs.DueDil.Requests.SearchCompanies
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
-        /*
         [JsonProperty(PropertyName = "location")]
         public string Location { get; set; }
 
@@ -16,6 +15,6 @@ namespace LiberisLabs.DueDil.Requests.SearchCompanies
 
         [JsonProperty(PropertyName = "domain")]
         public string Domain { get; set; }
- */
+
     }
 }

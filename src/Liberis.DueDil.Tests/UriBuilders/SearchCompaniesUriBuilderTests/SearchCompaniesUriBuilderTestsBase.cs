@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Web;
 using LiberisLabs.DueDil.Requests.SearchCompanies;
 using LiberisLabs.DueDil.UriBuilders;
@@ -6,27 +6,26 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
-namespace LiberisLabs.DueDil.Tests.UriBuilders
+namespace LiberisLabs.DueDil.Tests.UriBuilders.SearchCompaniesUriBuilderTests
 {
-    [TestFixture]
-    public class SearchCompaniesUriBuilderTests
+    public abstract class SearchCompaniesUriBuilderTestsBase
     {
         private Uri _actualUri;
         private string _apiKey;
-        private string _name;
         private Uri _baseUri;
 
         [SetUp]
-        public void GivenACompanyName_WhenBuildingAUri()
+        public void GivenSomeTerms_WhenBuildingAUri()
         {
             _baseUri = new Uri("http://liberis.co.uk/bla1/bla2/");
             _apiKey = Guid.NewGuid().ToString();
-            _name = "Liberis";
-            var terms = new Terms() {Name = _name};
+            var terms = GetTerms();
             var builder = new SearchCompaniesUriBuilder(_apiKey);
 
             _actualUri = builder.BuildUri(terms);
         }
+
+        protected abstract Terms GetTerms();
 
 
         [Test]
@@ -51,15 +50,12 @@ namespace LiberisLabs.DueDil.Tests.UriBuilders
             Assert.That(query["api_key"], Is.EqualTo(_apiKey));
         }
 
-        [Test]
-        public void ThenTheUriQueryStringContainsTheCorrectFilter()
+        protected JObject GetQueryFilters()
         {
             var uri = new Uri(_baseUri, _actualUri);
             var query = HttpUtility.ParseQueryString(uri.Query);
             var filters = JsonConvert.DeserializeObject<JObject>(query["filters"]);
-            var namefilter = filters["name"].Value<string>();
-
-            Assert.That(namefilter, Is.EqualTo(_name));
+            return filters;
         }
     }
 }

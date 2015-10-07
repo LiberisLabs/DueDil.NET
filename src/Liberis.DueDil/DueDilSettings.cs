@@ -4,30 +4,17 @@ namespace LiberisLabs.DueDil
 {
     public class DueDilSettings
     {
-        private readonly string _apiKey;
-        private readonly Uri _baseUri;
-        private readonly bool _sandboxMode;
-
         public DueDilSettings(Uri baseUri, string apiKey, bool sandboxMode)
         {
-            _baseUri = baseUri;
-            _apiKey = apiKey;
-            _sandboxMode = sandboxMode;
+            BaseUri = baseUri;
+            ApiKey = apiKey;
+            SandboxMode = sandboxMode;
         }
 
-        public Uri BaseUri
-        {
-            get { return _baseUri; }
-        }
+        public Uri BaseUri { get; }
 
-        public string ApiKey
-        {
-            get { return _apiKey; }
-        }
+        public string ApiKey { get; }
 
-        public bool SandboxMode
-        {
-            get { return _sandboxMode; }
-        }
+        public bool SandboxMode { get; }
     }
 }
