@@ -14,9 +14,9 @@
    
   os: Visual Studio 2015
 
-environment:
-  DueDilApiKey:
-    secure: TsxWgT6XTgHfTJYG0PPV2FIQ7fGHgD/BBfdqzwH4eBE=
+  environment:
+    DueDilApiKey:
+      secure: TsxWgT6XTgHfTJYG0PPV2FIQ7fGHgD/BBfdqzwH4eBE=
   
   before_build:
     - ps : .\build-before_build.ps1
