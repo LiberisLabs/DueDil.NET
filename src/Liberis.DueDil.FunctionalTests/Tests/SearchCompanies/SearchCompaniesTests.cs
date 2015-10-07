@@ -3,15 +3,22 @@ using System.Linq;
 using LiberisLabs.DueDil.FunctionalTests.MockApi;
 using LiberisLabs.DueDil.Requests.SearchCompanies;
 using LiberisLabs.DueDil.Responses;
-using LiberisLabs.DueDil.Responses.Companies;
 using LiberisLabs.DueDil.Responses.SearchCompanies;
 using NUnit.Framework;
 
-namespace LiberisLabs.DueDil.FunctionalTests
+namespace LiberisLabs.DueDil.FunctionalTests.Tests.SearchCompanies
 {
-    [TestFixture]
-    public class SearchCompaniesForSandboxTests
+    [TestFixture(false)]
+    [TestFixture(true)]
+    public class SearchCompaniesTests
     {
+        private readonly bool _sandboxMode;
+
+        public SearchCompaniesTests(bool sandboxMode)
+        {
+            _sandboxMode = sandboxMode;
+        }
+
         private Api _api;
         private DueDilClientResponse<SearchCompany> _actual;
         private MockResource _resource;
@@ -21,16 +28,25 @@ namespace LiberisLabs.DueDil.FunctionalTests
         {
             var name = "GG";
             var apiKey = Guid.NewGuid().ToString();
-            _resource = new MockResource(new ResourceIdentifier("GET", "/v3/sandbox/companies", $"?api_key={apiKey}&filters={{\"name\":\"{name}\"}}"));
+            _resource = new MockResource(new ResourceIdentifier("GET", CreateCompaniesPath(), $"?api_key={apiKey}&filters={{\"name\":\"{name}\"}}"));
             _resource.ReturnsBody(JsonSearchResponse);
 
             _api = new Api();
             _api.RegisterResource(_resource);
             _api.Start();
 
-            var client = new DueDilClientFactory(new DueDilSettings(_api.Uri, apiKey, true)).CreateClient();
+            var client = new DueDilClientFactory(new DueDilSettings(_api.Uri, apiKey, _sandboxMode)).CreateClient();
 
             _actual = client.SearchCompanies(new Terms(){Name = name}).Result;
+        }
+
+        private string CreateCompaniesPath()
+        {
+            var v3Path = "/v3";
+            var sandboxPath = _sandboxMode ? "/sandbox" : null;
+            var companiesPath = $"{v3Path}{sandboxPath}/companies";
+
+            return companiesPath;
         }
 
         [Test]

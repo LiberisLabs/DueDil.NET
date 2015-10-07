@@ -4,30 +4,46 @@ using LiberisLabs.DueDil.Responses;
 using LiberisLabs.DueDil.Responses.Companies;
 using NUnit.Framework;
 
-namespace LiberisLabs.DueDil.FunctionalTests
+namespace LiberisLabs.DueDil.FunctionalTests.Tests.GetCompany
 {
-    [TestFixture]
+    [TestFixture(false)]
+    [TestFixture(true)]
     public class GetCompanyTests
     {
         private Api _api;
         private DueDilClientResponse<Company> _actual;
         private MockResource _resource;
+        private readonly bool _sandboxMode;
+
+        public GetCompanyTests(bool sandboxMode)
+        {
+            _sandboxMode = sandboxMode;
+        }
 
         [TestFixtureSetUp]
         public void GivenARunningApiWhenGettingACompany()
         {
             var companyId = Guid.NewGuid().ToString();
             var apiKey = Guid.NewGuid().ToString();
-            _resource = new MockResource(new ResourceIdentifier("GET", $"/v3/companies/{companyId}", $"?api_key={apiKey}"));
+            _resource = new MockResource(new ResourceIdentifier("GET", CreateCompanyPath(companyId), $"?api_key={apiKey}"));
             _resource.ReturnsBody(JsonSearchResponse);
 
             _api = new Api();
             _api.RegisterResource(_resource);
             _api.Start();
 
-            var client = new DueDilClientFactory(new DueDilSettings(_api.Uri, apiKey, false)).CreateClient();
+            var client = new DueDilClientFactory(new DueDilSettings(_api.Uri, apiKey, _sandboxMode)).CreateClient();
 
             _actual = client.GetCompany(companyId).Result;
+        }
+
+        private string CreateCompanyPath(string companyId)
+        {
+            var v3Path = "/v3";
+            var sandboxPath = _sandboxMode ? "/sandbox" : null;
+            var companiesPath = "/companies";
+
+            return $"{v3Path}{sandboxPath}{companiesPath}/{companyId}";
         }
 
         [Test]
