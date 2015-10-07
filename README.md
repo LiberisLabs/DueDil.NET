@@ -4,7 +4,7 @@ A simple .NET client wrapper for DueDil
 
 [![install from nuget](http://img.shields.io/nuget/v/DueDil.svg?style=flat-square)](https://www.nuget.org/packages/DueDil)
 [![downloads](http://img.shields.io/nuget/dt/DueDil.svg?style=flat-square)](https://www.nuget.org/packages/DueDil)
-[![Build status](https://ci.appveyor.com/api/projects/status/1pivqncn1tol0xvi/branch/master?svg=true)](https://ci.appveyor.com/project/kevbite/LiberisLabs.DueDil/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/hi8ncpjqjcrf9mih/branch/master?svg=true)](https://ci.appveyor.com/project/Liberis/duedil-net/branch/master)
 
 ## Getting Started
 
