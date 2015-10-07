@@ -11,5 +11,6 @@
     <releaseNotes>N/A</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>DueDil LiberisLabs API REST</tags>
+	<projectUrl>https://github.com/LiberisLabs/DueDil.NET</projectUrl>
   </metadata>
 </package>
