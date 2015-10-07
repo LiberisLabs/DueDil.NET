@@ -13,6 +13,10 @@
     patch: true
    
   os: Visual Studio 2015
+
+environment:
+  DueDilApiKey:
+    secure: TsxWgT6XTgHfTJYG0PPV2FIQ7fGHgD/BBfdqzwH4eBE=
   
   before_build:
     - ps : .\build-before_build.ps1
@@ -32,7 +36,8 @@
     assemblies:
       - '**\*.Tests.dll'
       - '**\*.FunctionalTests.dll'
-         
+      - '**\*..IntegrationTests.dll'
+               
   artifacts:
     - path: '*.nupkg'
      
@@ -58,7 +63,11 @@
     patch: true
 
   os: Visual Studio 2015
-  
+
+  environment:
+    DueDilApiKey:
+      secure: TsxWgT6XTgHfTJYG0PPV2FIQ7fGHgD/BBfdqzwH4eBE=
+
   before_build:
     - ps : .\build-before_build.ps1
 
@@ -66,7 +75,7 @@
     parallel: true
     verbosity: normal
     publish_nuget: true
-       
+
   configuration: Release
    
   cache:
@@ -77,6 +86,7 @@
     assemblies:
       - '**\*.Tests.dll'
       - '**\*.FunctionalTests.dll'
+      - '**\*..IntegrationTests.dll'
 
   artifacts:
     - path: '*.nupkg'
