@@ -20,6 +20,7 @@
   build:
     parallel: true
     verbosity: normal
+    publish_nuget: true
 
   configuration: Release
    
@@ -64,7 +65,8 @@
   build:
     parallel: true
     verbosity: normal
-   
+    publish_nuget: true
+       
   configuration: Release
    
   cache:
