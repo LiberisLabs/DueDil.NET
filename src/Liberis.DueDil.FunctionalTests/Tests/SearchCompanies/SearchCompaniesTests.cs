@@ -37,7 +37,7 @@ namespace LiberisLabs.DueDil.FunctionalTests.Tests.SearchCompanies
 
             var client = new DueDilClientFactory(new DueDilSettings(_api.Uri, apiKey, _sandboxMode)).CreateClient();
 
-            _actual = client.SearchCompanies(new Terms(){Name = name}).Result;
+            _actual = client.SearchCompaniesAsync(new Terms(){Name = name}).Result;
         }
 
         private string CreateCompaniesPath()

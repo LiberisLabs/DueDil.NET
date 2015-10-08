@@ -35,7 +35,7 @@ namespace LiberisLabs.DueDil.FunctionalTests.Tests.GetCompany
 
             var client = new DueDilClientFactory(new DueDilSettings(_api.Uri, apiKey, _sandboxMode)).CreateClient();
 
-            _actual = client.GetCompany(Locale.Uk, companyId).Result;
+            _actual = client.GetCompanyAsync(Locale.Uk, companyId).Result;
         }
 
         private string CreateCompanyPath(string companyId)

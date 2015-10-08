@@ -13,7 +13,11 @@ namespace LiberisLabs.DueDil.IntegrationTests.Tests
         [SetUp]
         public void WhenSearchingForACompany()
         {
-            _result = Client.SearchCompanies(new Terms() {Name = "L"}).Result;
+            var terms = new Terms()
+            {
+                Name = "L"
+            };
+            _result = Client.SearchCompaniesAsync(terms).Result;
         }
 
         [Test]

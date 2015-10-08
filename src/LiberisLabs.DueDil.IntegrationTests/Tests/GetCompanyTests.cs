@@ -15,7 +15,7 @@ namespace LiberisLabs.DueDil.IntegrationTests.Tests
         [SetUp]
         public void WhenSearchingForACompany()
         {
-            _result = Client.GetCompany(Locale.Uk, "bbeaf93e71060b699a7ba9922bc286694c0aa5a3").Result;
+            _result = Client.GetCompanyAsync(Locale.Uk, "bbeaf93e71060b699a7ba9922bc286694c0aa5a3").Result;
         }
 
         [Test]

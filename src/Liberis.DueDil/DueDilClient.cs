@@ -25,7 +25,7 @@ namespace LiberisLabs.DueDil
             _getCompanyUriBuilder = getCompanyUriBuilder;
         }
 
-        public async Task<DueDilClientResponse<SearchCompany>> SearchCompanies(Terms terms)
+        public async Task<DueDilClientResponse<SearchCompany>> SearchCompaniesAsync(Terms terms)
         {
             using (var httpClient = CreateHttpClient())
             {
@@ -44,7 +44,7 @@ namespace LiberisLabs.DueDil
             }
         }
 
-        public async Task<DueDilClientResponse<Company>> GetCompany(Locale locale, string companyId)
+        public async Task<DueDilClientResponse<Company>> GetCompanyAsync(Locale locale, string companyId)
         {
             using (var httpClient = CreateHttpClient())
             {

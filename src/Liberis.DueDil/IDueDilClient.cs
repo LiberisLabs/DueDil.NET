@@ -10,8 +10,8 @@ namespace LiberisLabs.DueDil
 {
     public interface IDueDilClient
     {
-        Task<DueDilClientResponse<SearchCompany>> SearchCompanies(Terms terms);
+        Task<DueDilClientResponse<SearchCompany>> SearchCompaniesAsync(Terms terms);
 
-        Task<DueDilClientResponse<Company>> GetCompany(Locale locale, string companyId);
+        Task<DueDilClientResponse<Company>> GetCompanyAsync(Locale locale, string companyId);
     }
 }
