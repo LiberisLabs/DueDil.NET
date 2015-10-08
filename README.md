@@ -33,10 +33,10 @@ To search for a company we need to start off with creating a `Terms` object with
 ```csharp
 var terms = new Terms()
             {
-                Name = "L",
-                Postcode = "NG1",
+                Name = "L",                     //any search string
+                Postcode = "NG1 1AA",           //needs to be full uk postcode, no wildcards
                 Domain = "liberis.com",
-                Location = "Nottingham"
+                Location = "Nottingham"         //accepts the name of a city and/or the address.
             };
 ```
 
