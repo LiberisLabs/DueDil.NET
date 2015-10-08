@@ -58,7 +58,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Liberis.DueDil\LiberisLabs.DueDil.csproj">
+    <ProjectReference Include="..\LiberisLabs.DueDil\LiberisLabs.DueDil.csproj">
       <Project>{A9E83935-57D8-46C5-A3EE-B651E904B158}</Project>
       <Name>LiberisLabs.DueDil</Name>
     </ProjectReference>

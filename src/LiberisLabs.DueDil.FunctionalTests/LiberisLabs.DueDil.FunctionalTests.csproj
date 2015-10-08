@@ -7,8 +7,8 @@
     <ProjectGuid>{DEE8082C-1362-472E-A787-6D7D38604CB7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Liberis.DueDil.Sdk.FunctionalTests</RootNamespace>
-    <AssemblyName>Liberis.DueDil.Sdk.FunctionalTests</AssemblyName>
+    <RootNamespace>LiberisLabs.DueDil.FunctionalTests</RootNamespace>
+    <AssemblyName>LiberisLabs.DueDil.FunctionalTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -49,20 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tests\GetCompany\GetCompanyTests.cs" />
     <Compile Include="MockApi\Api.cs" />
     <Compile Include="MockApi\MockResource.cs" />
     <Compile Include="MockApi\ResourceIdentifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchCompaniesTests.cs" />
+    <Compile Include="Tests\SearchCompanies\SearchCompaniesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Liberis.DueDil.Sdk\Liberis.DueDil.Sdk.csproj">
+    <ProjectReference Include="..\LiberisLabs.DueDil\LiberisLabs.DueDil.csproj">
       <Project>{A9E83935-57D8-46C5-A3EE-B651E904B158}</Project>
-      <Name>Liberis.DueDil.Sdk</Name>
+      <Name>LiberisLabs.DueDil</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
